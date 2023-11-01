@@ -4,6 +4,8 @@
  */
 package Frames;
 
+import java.awt.List;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,8 +17,10 @@ public class CrearMCFrame extends javax.swing.JFrame {
     /**
      * Creates new form CrearMCFrame
      */
+
     public CrearMCFrame() {
         initComponents();
+        init();
         setLocationRelativeTo(null);
     }
 
@@ -45,7 +49,6 @@ public class CrearMCFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Crear macrociclo");
-        setPreferredSize(new java.awt.Dimension(803, 511));
         setResizable(false);
 
         indicacionesLbl.setText("Selecciona las opciones para crear el macrociclo.");
@@ -54,6 +57,11 @@ public class CrearMCFrame extends javax.swing.JFrame {
 
         deporteCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Deporte 1", "Deporte 2", "Deporte 3", "Deporte 4" }));
         deporteCB.setToolTipText("");
+        deporteCB.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                deporteCBItemStateChanged(evt);
+            }
+        });
         deporteCB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deporteCBActionPerformed(evt);
@@ -175,8 +183,49 @@ public class CrearMCFrame extends javax.swing.JFrame {
 
     private void deporteCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deporteCBActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_deporteCBActionPerformed
 
+    private void deporteCBItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_deporteCBItemStateChanged
+        // TODO add your handling code here:
+        String deporte=deporteCB.getSelectedItem().toString();
+        ramaCB.setEnabled(true);
+        switch(deporte){
+            case "Judo":
+            ramaCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"Judo 1","Judo 2","Judo 3"}));
+            break;
+            case "Basquetbol":
+            ramaCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"Basquetbol 1","Basquetbol 2","Basquetbol 3"}));
+            break;
+    
+            case "Futbol":
+            ramaCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"Futbol 1","Futbol 2","Futbol 3"}));    
+            break;
+            case "Voleibol":
+            ramaCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"Voleibol 1","Voleibol 2","Voleibol 3"}));
+            break;
+            case "Hockey":
+            ramaCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"Hockey 1","Hockey 2","Hockey 3"}));    
+            break;
+    
+            case "Karate":
+            ramaCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"Karate 1","Karate 2","Karate 3"}));    
+            break;
+            case "Taekwondo":
+            ramaCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"Takwondo 1","Takwondo 2","Takwondo 3"}));    
+            break;
+        default:
+     // Default secuencia de sentencias.
+        }
+    }//GEN-LAST:event_deporteCBItemStateChanged
+    
+    public void init(){
+        ramaCB.setEnabled(false);
+        jefeDeRamaCB.setEnabled(false);
+        entrenadorCB.setEnabled(false);
+        metodologoCB.setEnabled(false);
+        deporteCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"Judo","Basquetbol","Futbol","Voleibol", "Hockey", "Karate","Taekwondo"}));
+    }
     public void validarCampos() {
         String deporteSeleccionado = deporteCB.getSelectedItem().toString();
         String ramaSeleccionada = ramaCB.getSelectedItem().toString();
