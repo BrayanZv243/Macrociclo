@@ -3,7 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/hrive/Documents/Universidad/Metodos%20Agiles/Proyecto/Macrociclo/Macrociclo-Persistencia/src/macrociclo/persistencia/MacrocicloPersistencia.java</file>
+            <file>file:/C:/Users/USER/Documents/Trabajos%20de%20la%20escuela/Métodos%20Ágiles%20de%20Desarrollo/Macrociclos/Macrociclo-Persistencia/src/entidades/Entrenador.java</file>
+            <file>file:/C:/Users/USER/Documents/Trabajos%20de%20la%20escuela/Métodos%20Ágiles%20de%20Desarrollo/Macrociclos/Macrociclo-Persistencia/src/interfaces/IEntrenadorDAO.java</file>
+            <file>file:/C:/Users/USER/Documents/Trabajos%20de%20la%20escuela/Métodos%20Ágiles%20de%20Desarrollo/Macrociclos/Macrociclo-Persistencia/src/interfaces/IConexionBD.java</file>
         </group>
     </open-files>
 </project-private>
