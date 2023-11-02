@@ -15,12 +15,10 @@ public class Persistencia implements IPersistencia {
     }
 
     public static Persistencia getInstance() {
-        if (persistencia == null) {
-            return new Persistencia();
-        }
-        return persistencia;
+        return persistencia == null ? new Persistencia() : persistencia;
     }
 
+    // Inicio de métodos para el entrenador, abajo se pondrán de otras entidades.
     @Override
     public boolean registrarEntrenador(Entrenador entrenador) {
         return entrenadorDAO.registrarEntrenador(entrenador);
@@ -36,4 +34,10 @@ public class Persistencia implements IPersistencia {
         return entrenadorDAO.actualizarEntrenador(id, entrenador);
     }
 
+    @Override
+    public Entrenador existeEntrenador(Entrenador entrenador) {
+        return entrenadorDAO.existeEntrenador(entrenador);
+    }
+
+    // Fin de métodos de entrenador.
 }

@@ -12,6 +12,5 @@ public class DAOSFactory {
     public static IEntrenadorDAO crearEntrenadoresDAO() {
         return new EntrenadorDAO(conexionBD);
     }
-    
-    
+
 }

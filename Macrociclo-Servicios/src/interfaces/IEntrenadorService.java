@@ -2,11 +2,8 @@ package interfaces;
 
 import entidades.Entrenador;
 
-public interface IPersistencia {
+public interface IEntrenadorService {
 
-    
-    // Métodos del entrenador.
-    
     /**
      * Registrar a un entrenador con sus datos
      *
@@ -37,8 +34,7 @@ public interface IPersistencia {
      *
      * @param entrenador El entrenador a comprobar si existe, especificamente
      * usa el id y la contraseña.
-     * @return El entrenador si lo encontró, null en caso contrario.
+     * @return El entrenador si lo encontró, false en caso contrario.
      */
     public Entrenador existeEntrenador(Entrenador entrenador);
-
 }

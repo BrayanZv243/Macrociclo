@@ -1,18 +1,25 @@
 package entidades;
 
-
 public class Entrenador {
+
     String id;
     String contraseña;
     String nombre;
+    String correoPotros;
 
     public Entrenador() {
     }
 
-    public Entrenador(String id, String contraseña, String nombre) {
+    public Entrenador(String id, String contraseña, String nombre, String correoPotros) {
         this.id = id;
         this.contraseña = contraseña;
         this.nombre = nombre;
+        this.correoPotros = correoPotros;
+    }
+
+    public Entrenador(String id, String contraseña) {
+        this.id = id;
+        this.contraseña = contraseña;
     }
 
     public String getId() {
@@ -39,10 +46,17 @@ public class Entrenador {
         this.nombre = nombre;
     }
 
+    public String getCorreoPotros() {
+        return correoPotros;
+    }
+
+    public void setCorreoPotros(String correoPotros) {
+        this.correoPotros = correoPotros;
+    }
+
     @Override
     public String toString() {
-        return "Entrenador{" + "id=" + id + ", contrase\u00f1a=" + contraseña + ", nombre=" + nombre + '}';
+        return "Entrenador{" + "id=" + id + ", contrase\u00f1a=" + contraseña + ", nombre=" + nombre + ", correoPotros=" + correoPotros + '}';
     }
-    
-    
+
 }

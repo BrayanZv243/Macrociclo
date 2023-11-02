@@ -8,7 +8,7 @@ import java.sql.*;
 public class EntrenadorDAO implements IEntrenadorDAO {
 
     private final IConexionBD conexion;
-    private final Connection baseDatos;
+    private Connection baseDatos;
 
     public EntrenadorDAO(IConexionBD conexion) {
         this.conexion = conexion;
@@ -19,7 +19,7 @@ public class EntrenadorDAO implements IEntrenadorDAO {
     public boolean registrarEntrenador(Entrenador entrenador) {
         // Verificar si la conexión a la base de datos es nula
         if (baseDatos == null) {
-            System.err.println("Error: No se pudo obtener la conexión a la base de datos.");
+            System.err.println("Error: No se pudo obtener la conexión a la base de datos. ");
             return false;
         }
 
@@ -27,7 +27,7 @@ public class EntrenadorDAO implements IEntrenadorDAO {
 
         try {
             // Consulta SQL para insertar un nuevo entrenador
-            String insertQuery = "INSERT INTO entrenadores (id, contraseña, nombre) VALUES (?, ?, ?)";
+            String insertQuery = "INSERT INTO entrenadores (id, contraseña, nombre, correoPotros) VALUES (?, ?, ?, ?)";
 
             // Crear una declaración preparada con la consulta SQL
             preparedStatement = baseDatos.prepareStatement(insertQuery);
@@ -36,6 +36,7 @@ public class EntrenadorDAO implements IEntrenadorDAO {
             preparedStatement.setString(1, entrenador.getId());
             preparedStatement.setString(2, entrenador.getContraseña());
             preparedStatement.setString(3, entrenador.getNombre());
+            preparedStatement.setString(4, entrenador.getCorreoPotros());
 
             // Ejecutar la consulta para insertar el entrenador
             int filasAfectadas = preparedStatement.executeUpdate();
@@ -116,7 +117,7 @@ public class EntrenadorDAO implements IEntrenadorDAO {
 
         try {
             // Consulta SQL para actualizar los datos de un entrenador por su ID
-            String updateQuery = "UPDATE entrenadores SET contraseña = ?, nombre = ? WHERE id = ?";
+            String updateQuery = "UPDATE entrenadores SET contraseña = ?, nombre = ?, correoPotros = ? WHERE id = ?";
 
             // Crear una declaración preparada con la consulta SQL
             preparedStatement = baseDatos.prepareStatement(updateQuery);
@@ -124,7 +125,8 @@ public class EntrenadorDAO implements IEntrenadorDAO {
             // Establecer los valores de los parámetros en la declaración preparada
             preparedStatement.setString(1, entrenador.getContraseña());
             preparedStatement.setString(2, entrenador.getNombre());
-            preparedStatement.setString(3, id);
+            preparedStatement.setString(3, entrenador.getCorreoPotros());
+            preparedStatement.setString(4, id);
 
             // Ejecutar la consulta para actualizar el entrenador
             int filasAfectadas = preparedStatement.executeUpdate();
@@ -150,4 +152,38 @@ public class EntrenadorDAO implements IEntrenadorDAO {
         }
     }
 
+    @Override
+    public Entrenador existeEntrenador(Entrenador entrenador) {
+        try {
+            // Verificar si la conexión a la base de datos es nula o está cerrada
+            if (baseDatos == null || baseDatos.isClosed()) {
+                System.err.println("Error: No se pudo obtener la conexión a la base de datos o la conexión está cerrada.");
+                return null; // Devuelve null para indicar que no se pudo realizar la búsqueda.
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error en sql: " + ex);
+        }
+
+        String sql = "SELECT id, contraseña, nombre, correoPotros FROM entrenadores WHERE id = ? AND contraseña = ?";
+
+        try (PreparedStatement preparedStatement = baseDatos.prepareStatement(sql)) {
+            preparedStatement.setString(1, entrenador.getId());
+            preparedStatement.setString(2, entrenador.getContraseña());
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                // Si el resultado contiene alguna fila, significa que el entrenador existe
+                if (resultSet.next()) {
+                    Entrenador encontrado = new Entrenador();
+                    encontrado.setId(resultSet.getString("id"));
+                    encontrado.setContraseña(resultSet.getString("contraseña"));
+                    encontrado.setNombre(resultSet.getString("nombre"));
+                    encontrado.setCorreoPotros(resultSet.getString("correoPotros"));
+                    return encontrado;
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error en SQL al verificar si el entrenador existe: " + e);
+        }
+        return null; // Devuelve null si el entrenador no fue encontrado en la base de datos.
+    }
 }

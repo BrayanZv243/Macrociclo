@@ -1,12 +1,18 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
+ */
 package interfaces;
 
 import entidades.Entrenador;
 
-public interface IPersistencia {
-
-    
+/**
+ *
+ * @author USER
+ */
+public interface IPersistenciaFachada {
     // Métodos del entrenador.
-    
+
     /**
      * Registrar a un entrenador con sus datos
      *
@@ -31,14 +37,13 @@ public interface IPersistencia {
      * @return El entrenador actualizado.
      */
     public boolean actualizarEntrenador(String id, Entrenador entrenador);
-    
+
     /**
      * Valida si el entrenador dado como parametro ya existe.
      *
      * @param entrenador El entrenador a comprobar si existe, especificamente
      * usa el id y la contraseña.
-     * @return El entrenador si lo encontró, null en caso contrario.
+     * @return El entrenador si lo encontró, false en caso contrario.
      */
     public Entrenador existeEntrenador(Entrenador entrenador);
-
 }
