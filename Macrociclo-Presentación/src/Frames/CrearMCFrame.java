@@ -1,6 +1,7 @@
 package Frames;
 
 import entidades.Entrenador;
+import entidades.Macrociclo;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,9 +14,15 @@ public class CrearMCFrame extends javax.swing.JFrame {
      * Creates new form CrearMCFrame
      * @param entrenador
      */
+//    public CrearMCFrame(){
+//        initComponents();
+//        lblNombreEntrenador.setText("Prueba");
+//        init();
+//        setLocationRelativeTo(null);
+//    }
     public CrearMCFrame(Entrenador entrenador) {
         initComponents();
-        lblNombreEntrenador.setText(entrenador.getNombre());
+        lblNombreEntrenador.setText("Prueba");
         init();
         setLocationRelativeTo(null);
     }
@@ -192,7 +199,26 @@ public class CrearMCFrame extends javax.swing.JFrame {
 
     private void siguienteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguienteBtnActionPerformed
         // TODO add your handling code here:
-        validarCampos();
+       
+        if ( validarCampos()) {
+            String deporte= deporteCB.getSelectedItem().toString();
+            String rama = ramaCB.getSelectedItem().toString();
+            String jefeDeRama = jefeDeRamaCB.getSelectedItem().toString();
+            String entrenador = entrenadorCB.getSelectedItem().toString();
+            String metodologo = metodologoCB.getSelectedItem().toString();
+            
+            Macrociclo macrociclo = new Macrociclo(deporte, rama, jefeDeRama, entrenador, metodologo);
+
+            new InicioFrame(macrociclo).setVisible(true);
+
+        }else {
+                JOptionPane.showMessageDialog(
+                        null, // Componente padre (en este caso, ninguno)
+                        "Ocurrió un error al ingresar los datos.",
+                        "Error al ingresar los datos",
+                        JOptionPane.INFORMATION_MESSAGE
+                );
+            }
     }//GEN-LAST:event_siguienteBtnActionPerformed
 
     private void deporteCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deporteCBActionPerformed
@@ -235,13 +261,13 @@ public class CrearMCFrame extends javax.swing.JFrame {
 
     public void init() {
         ramaCB.setEnabled(false);
-        jefeDeRamaCB.setEnabled(false);
-        entrenadorCB.setEnabled(false);
-        metodologoCB.setEnabled(false);
+        jefeDeRamaCB.setEnabled(true);
+        entrenadorCB.setEnabled(true);
+        metodologoCB.setEnabled(true);
         deporteCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Judo", "Basquetbol", "Futbol", "Voleibol", "Hockey", "Karate", "Taekwondo"}));
     }
 
-    public void validarCampos() {
+    public boolean validarCampos() {
         String deporteSeleccionado = deporteCB.getSelectedItem().toString();
         String ramaSeleccionada = ramaCB.getSelectedItem().toString();
         String jefeDeRamaSeleccionado = jefeDeRamaCB.getSelectedItem().toString();
@@ -257,11 +283,47 @@ public class CrearMCFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Por favor, selecciona valores válidos en todos los campos",
                     "Error de Validación", JOptionPane.ERROR_MESSAGE);
         } else {
+            return true;
             // Todos los campos son válidos, puedes continuar con tu lógica
             // ...
         }
+        return false;
     }
-
+/**
+     * @param args the command line arguments
+     */
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(InicioFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(InicioFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(InicioFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(InicioFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new CrearMCFrame().setVisible(true);
+//            }
+//        });
+//    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> deporteCB;
     private javax.swing.JLabel deporteLbl;
