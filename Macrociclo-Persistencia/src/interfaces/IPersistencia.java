@@ -1,6 +1,7 @@
 package interfaces;
 
 import entidades.Entrenador;
+import entidades.Macrociclo;
 
 public interface IPersistencia {
 
@@ -40,5 +41,33 @@ public interface IPersistencia {
      * @return El entrenador si lo encontró, null en caso contrario.
      */
     public Entrenador existeEntrenador(Entrenador entrenador);
+    
+  
+    // Métodos del macrociclo.
+    
+    /**
+     * Crear a un macrociclo con sus datos
+     *
+     * @param macrociclo El macrociclo a crear.
+     * @return true si se registró correctamente, false en caso contrario.
+     */
+    public boolean crearMacrociclo(Macrociclo macrociclo);
+
+   /**
+     * Eliminar un macrociclo con su id.
+     *
+     * @param id id del macrociclo a eliminar
+     * @return El id del macrociclo a eliminar.
+     */
+    public boolean eliminarMacrociclo(String id);
+    
+    /**
+     * Actualiza un macrociclo dado su id y sus nuevos datos.
+     *
+     * @param id El id del macrociclo a actualizar.
+     * @param macrociclo Los nuevos datos del macrociclo.
+     * @return El macrociclo actualizado.
+     */
+    public boolean actualizarMacrociclo(String id, Macrociclo macrociclo);
 
 }
