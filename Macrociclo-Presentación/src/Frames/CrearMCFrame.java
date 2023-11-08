@@ -1,5 +1,6 @@
 package Frames;
 
+import autenticacion.IniciarSesionFrame;
 import entidades.Entrenador;
 import entidades.Macrociclo;
 import javax.swing.JOptionPane;
@@ -43,8 +44,6 @@ public class CrearMCFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        lblBienvenida = new javax.swing.JLabel();
-        lblNombreEntrenador = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         txtMetodologo = new javax.swing.JTextField();
         metodologoLbl = new javax.swing.JLabel();
@@ -55,114 +54,170 @@ public class CrearMCFrame extends javax.swing.JFrame {
         jefeDeRamaLbl = new javax.swing.JLabel();
         txtJefeRama = new javax.swing.JTextField();
         comboDeporte = new javax.swing.JComboBox<>();
+        indicacionesLbl = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        lblBienvenida = new javax.swing.JLabel();
+        lblNombreEntrenador = new javax.swing.JLabel();
+        btnCerrarSesion = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Crear macrociclo");
+        setTitle("Crear macrociclo | Información Principal");
         setResizable(false);
 
-        lblBienvenida.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        lblBienvenida.setText("Bienvenido entrenador");
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        lblNombreEntrenador.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lblNombreEntrenador.setText("nombre entrenador");
-
-        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(204, 0, 0), null, null));
-
+        metodologoLbl.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        metodologoLbl.setForeground(new java.awt.Color(51, 51, 51));
         metodologoLbl.setText("Metodólogo");
 
-        siguienteBtn.setText("Confirmar");
+        siguienteBtn.setBackground(new java.awt.Color(23, 110, 181));
+        siguienteBtn.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        siguienteBtn.setForeground(new java.awt.Color(255, 255, 255));
+        siguienteBtn.setText("Siguiente");
         siguienteBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 siguienteBtnActionPerformed(evt);
             }
         });
 
+        deporteLbl.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        deporteLbl.setForeground(new java.awt.Color(51, 51, 51));
         deporteLbl.setText("Deporte");
 
+        ramaLbl.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        ramaLbl.setForeground(new java.awt.Color(51, 51, 51));
         ramaLbl.setText("Rama");
 
+        txtRama.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtRamaActionPerformed(evt);
+            }
+        });
+
+        jefeDeRamaLbl.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jefeDeRamaLbl.setForeground(new java.awt.Color(51, 51, 51));
         jefeDeRamaLbl.setText("Jefe de rama");
 
         comboDeporte.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un deporte", "Judo", "Basquetbol", "Futbol", "Voleibol", "Hockey", "Karate", "Taekwondo" }));
+
+        indicacionesLbl.setBackground(new java.awt.Color(51, 51, 51));
+        indicacionesLbl.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        indicacionesLbl.setForeground(new java.awt.Color(51, 51, 51));
+        indicacionesLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        indicacionesLbl.setText("Llenar todas las opciones para crear el macrociclo.");
+        indicacionesLbl.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+                .addComponent(indicacionesLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(67, 67, 67)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(metodologoLbl)
-                                    .addComponent(jefeDeRamaLbl))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtJefeRama, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                                    .addComponent(txtMetodologo, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(25, 25, 25)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(deporteLbl)
-                                    .addComponent(ramaLbl))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtRama)
-                                    .addComponent(comboDeporte, 0, 150, Short.MAX_VALUE)))))
-                    .addComponent(siguienteBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(txtMetodologo, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(deporteLbl, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(comboDeporte, javax.swing.GroupLayout.Alignment.LEADING, 0, 279, Short.MAX_VALUE))
+                    .addComponent(metodologoLbl))
+                .addGap(95, 95, 95)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ramaLbl)
+                    .addComponent(txtRama, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtJefeRama, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jefeDeRamaLbl))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(siguienteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(271, 271, 271))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addGap(44, 44, 44)
+                .addComponent(indicacionesLbl)
+                .addGap(41, 41, 41)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(deporteLbl)
-                    .addComponent(comboDeporte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ramaLbl)
-                    .addComponent(txtRama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtJefeRama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jefeDeRamaLbl))
-                .addGap(13, 13, 13)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(metodologoLbl)
-                    .addComponent(txtMetodologo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(siguienteBtn)
-                .addContainerGap(21, Short.MAX_VALUE))
+                    .addComponent(ramaLbl))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(comboDeporte, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                    .addComponent(txtRama))
+                .addGap(45, 45, 45)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(metodologoLbl)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtMetodologo, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jefeDeRamaLbl)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtJefeRama, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(91, 91, 91)
+                .addComponent(siguienteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(105, Short.MAX_VALUE))
+        );
+
+        jPanel3.setBackground(new java.awt.Color(23, 110, 181));
+
+        lblBienvenida.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        lblBienvenida.setForeground(new java.awt.Color(255, 255, 255));
+        lblBienvenida.setText("Bienvenido entrenador,");
+
+        lblNombreEntrenador.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        lblNombreEntrenador.setForeground(new java.awt.Color(255, 255, 255));
+        lblNombreEntrenador.setText("Hugo Sanchez");
+
+        btnCerrarSesion.setBackground(new java.awt.Color(255, 255, 255));
+        btnCerrarSesion.setForeground(new java.awt.Color(51, 51, 51));
+        btnCerrarSesion.setText("Cerrar Sesión");
+        btnCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarSesionActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(lblBienvenida)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblNombreEntrenador)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(12, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblBienvenida)
+                    .addComponent(lblNombreEntrenador)
+                    .addComponent(btnCerrarSesion))
+                .addGap(12, 12, 12))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblBienvenida)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblNombreEntrenador))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(546, Short.MAX_VALUE))
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblBienvenida)
-                    .addComponent(lblNombreEntrenador))
-                .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(243, Short.MAX_VALUE))
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -193,6 +248,16 @@ public class CrearMCFrame extends javax.swing.JFrame {
             );
         }
     }//GEN-LAST:event_siguienteBtnActionPerformed
+
+    private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        new IniciarSesionFrame().setVisible(true);
+    }//GEN-LAST:event_btnCerrarSesionActionPerformed
+
+    private void txtRamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRamaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtRamaActionPerformed
 
     public boolean validarCampos() {
         return true;
@@ -233,10 +298,13 @@ public class CrearMCFrame extends javax.swing.JFrame {
 //        });
 //    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCerrarSesion;
     private javax.swing.JComboBox<String> comboDeporte;
     private javax.swing.JLabel deporteLbl;
+    private javax.swing.JLabel indicacionesLbl;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel jefeDeRamaLbl;
     private javax.swing.JLabel lblBienvenida;
     private javax.swing.JLabel lblNombreEntrenador;
