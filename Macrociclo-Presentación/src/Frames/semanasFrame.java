@@ -1,28 +1,25 @@
 package Frames;
 
-import entidades.Macrociclo;
-import interfaces.IPersistenciaFachada;
+import entidades.Entrenador;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
-import negocio.PersistenciaFachada;
 
 /**
  *
  * @author USER
  */
-public class InicioFrame extends javax.swing.JFrame {
-    private Macrociclo macrociclo;
-    IPersistenciaFachada persistencia;
-    
-    public InicioFrame(Macrociclo macrociclo) {
+public class semanasFrame extends javax.swing.JFrame {
+
+    Entrenador entrenador;
+
+    public semanasFrame(Entrenador entrenador) {
         initComponents();
-         persistencia = PersistenciaFachada.getInstance();
-        this.macrociclo=macrociclo;
         setLocationRelativeTo(null);
+        
+        this.entrenador = entrenador;
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -71,27 +68,26 @@ public class InicioFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(234, 234, 234)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(dateChooserFin, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                            .addComponent(dateChooserInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(totalSemanasCalculadas)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(345, 345, 345)
-                        .addComponent(btnConfirmar)))
-                .addContainerGap(326, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(dateChooserFin, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                    .addComponent(dateChooserInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(totalSemanasCalculadas))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnConfirmar)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(dateChooserInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -103,9 +99,9 @@ public class InicioFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(totalSemanasCalculadas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(151, 151, 151)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addComponent(btnConfirmar)
-                .addContainerGap(189, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -113,31 +109,34 @@ public class InicioFrame extends javax.swing.JFrame {
 
     private void dateChooserFinPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_dateChooserFinPropertyChange
         if (dateChooserFin.getDate() != null) {
-            if (validaciones()) totalSemanasCalculadas.setText(Integer.toString(calcularSemanas(dateChooserInicio.getDate(), dateChooserFin.getDate())));
+            if (validaciones()) {
+                totalSemanasCalculadas.setText(Integer.toString(calcularSemanas(dateChooserInicio.getDate(), dateChooserFin.getDate())));
+            }
         }
     }//GEN-LAST:event_dateChooserFinPropertyChange
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         // TODO add your handling code here:
-        macrociclo.setSemanas(Integer.valueOf(totalSemanasCalculadas.getText()));
-        if (persistencia.crearMacrociclo(macrociclo)) {
-                JOptionPane.showMessageDialog(
-                        null, // Componente padre (en este caso, ninguno)
-                        "Se registró el macrociclo de forma exitosa.",
-                        "Registro Exitoso",
-                        JOptionPane.INFORMATION_MESSAGE
-                );
-                dispose();
-                
-            } else {
-                JOptionPane.showMessageDialog(
-                        null, // Componente padre (en este caso, ninguno)
-                        "Ocurrió un error inesperado al registrar el entrenador.",
-                        "Error al registrar el entrenador",
-                        JOptionPane.INFORMATION_MESSAGE
-                );
-            }
         
+        if (validaciones()) {
+            JOptionPane.showMessageDialog(
+                    null, // Componente padre (en este caso, ninguno)
+                    "Se registró el macrociclo de forma exitosa.",
+                    "Registro Exitoso",
+                    JOptionPane.INFORMATION_MESSAGE
+            );
+            dispose();
+            new CrearMCFrame(entrenador, Integer.parseInt(totalSemanasCalculadas.getText())).setVisible(true);
+
+        } else {
+            JOptionPane.showMessageDialog(
+                    null, // Componente padre (en este caso, ninguno)
+                    "Ocurrió un error inesperado al registrar las semanas.",
+                    "Error al registrar las semanas",
+                    JOptionPane.INFORMATION_MESSAGE
+            );
+        }
+
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     private boolean validaciones() {
@@ -158,7 +157,7 @@ public class InicioFrame extends javax.swing.JFrame {
             dateChooserFin.setDate(null);
             return false;
         }
-        
+
         // Validar que el período sea de al menos 7 días
         long diferenciaEnMillis = dateChooserFin.getDate().getTime() - dateChooserInicio.getDate().getTime();
         long diferenciaEnDias = diferenciaEnMillis / (24 * 60 * 60 * 1000);
@@ -167,12 +166,9 @@ public class InicioFrame extends javax.swing.JFrame {
             dateChooserFin.setDate(null);
             return false;
         }
-        
-        
+
         return true;
     }
-
-    
 
     private int calcularSemanas(Date inicio, Date fin) {
         // Crear un objeto Calendar para las fechas
@@ -180,13 +176,13 @@ public class InicioFrame extends javax.swing.JFrame {
         Calendar calFin = Calendar.getInstance();
         calInicio.setTime(inicio);
         calFin.setTime(fin);
-        
+
         // Calcular la diferencia en milisegundos
         long diferenciaEnMillis = calFin.getTimeInMillis() - calInicio.getTimeInMillis();
-        
+
         // Convertir la diferencia en semanas y retornamos.
         return (int) (diferenciaEnMillis / (7 * 24 * 60 * 60 * 1000));
-        
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

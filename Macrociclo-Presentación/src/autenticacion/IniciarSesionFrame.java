@@ -1,6 +1,6 @@
 package autenticacion;
 
-import Frames.CrearMCFrame;
+import Frames.semanasFrame;
 import entidades.Entrenador;
 import interfaces.IPersistenciaFachada;
 import java.awt.Color;
@@ -180,7 +180,7 @@ public class IniciarSesionFrame extends javax.swing.JFrame {
 
         if (entrenador != null) {
             dispose();
-            new CrearMCFrame(entrenador).setVisible(true);
+            new semanasFrame(entrenador).setVisible(true);
         } else {
             JOptionPane.showMessageDialog(
                     null, // Componente padre (en este caso, ninguno)

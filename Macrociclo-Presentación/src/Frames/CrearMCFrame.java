@@ -10,9 +10,14 @@ import javax.swing.JOptionPane;
  */
 public class CrearMCFrame extends javax.swing.JFrame {
 
+    Entrenador entrenador;
+    int semanas;
+
     /**
      * Creates new form CrearMCFrame
+     *
      * @param entrenador
+     * @param semanas
      */
 //    public CrearMCFrame(){
 //        initComponents();
@@ -20,10 +25,11 @@ public class CrearMCFrame extends javax.swing.JFrame {
 //        init();
 //        setLocationRelativeTo(null);
 //    }
-    public CrearMCFrame(Entrenador entrenador) {
+    public CrearMCFrame(Entrenador entrenador, int semanas) {
         initComponents();
         lblNombreEntrenador.setText("Prueba");
-        init();
+        this.entrenador = entrenador;
+        this.semanas = semanas;
         setLocationRelativeTo(null);
     }
 
@@ -37,64 +43,22 @@ public class CrearMCFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        indicacionesLbl = new javax.swing.JLabel();
-        deporteLbl = new javax.swing.JLabel();
-        deporteCB = new javax.swing.JComboBox<>();
-        ramaLbl = new javax.swing.JLabel();
-        ramaCB = new javax.swing.JComboBox<>();
-        jefeDeRamaLbl = new javax.swing.JLabel();
-        jefeDeRamaCB = new javax.swing.JComboBox<>();
-        entrenadorLbl = new javax.swing.JLabel();
-        entrenadorCB = new javax.swing.JComboBox<>();
-        metodologoLbl = new javax.swing.JLabel();
-        metodologoCB = new javax.swing.JComboBox<>();
-        siguienteBtn = new javax.swing.JButton();
         lblBienvenida = new javax.swing.JLabel();
         lblNombreEntrenador = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        txtMetodologo = new javax.swing.JTextField();
+        metodologoLbl = new javax.swing.JLabel();
+        siguienteBtn = new javax.swing.JButton();
+        deporteLbl = new javax.swing.JLabel();
+        ramaLbl = new javax.swing.JLabel();
+        txtRama = new javax.swing.JTextField();
+        jefeDeRamaLbl = new javax.swing.JLabel();
+        txtJefeRama = new javax.swing.JTextField();
+        comboDeporte = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Crear macrociclo");
         setResizable(false);
-
-        indicacionesLbl.setText("Selecciona las opciones para crear el macrociclo.");
-
-        deporteLbl.setText("Deporte");
-
-        deporteCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Deporte 1", "Deporte 2", "Deporte 3", "Deporte 4" }));
-        deporteCB.setToolTipText("");
-        deporteCB.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                deporteCBItemStateChanged(evt);
-            }
-        });
-        deporteCB.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deporteCBActionPerformed(evt);
-            }
-        });
-
-        ramaLbl.setText("Rama");
-
-        ramaCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "rama 1", "rama 2", "rama 3", "rama 4" }));
-
-        jefeDeRamaLbl.setText("Jefe de rama");
-
-        jefeDeRamaCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Jefe 1", "Jefe 2" }));
-
-        entrenadorLbl.setText("Entrenador asignado");
-
-        entrenadorCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "entrenador 1", "entrenador 2", "entrenador 3" }));
-
-        metodologoLbl.setText("Metodólogo");
-
-        metodologoCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "metodólogo 1", "metodólogo 2", "metodólogo 3" }));
-
-        siguienteBtn.setText("Siguiente");
-        siguienteBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                siguienteBtnActionPerformed(evt);
-            }
-        });
 
         lblBienvenida.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         lblBienvenida.setText("Bienvenido entrenador");
@@ -102,53 +66,92 @@ public class CrearMCFrame extends javax.swing.JFrame {
         lblNombreEntrenador.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lblNombreEntrenador.setText("nombre entrenador");
 
+        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(204, 0, 0), null, null));
+
+        metodologoLbl.setText("Metodólogo");
+
+        siguienteBtn.setText("Confirmar");
+        siguienteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                siguienteBtnActionPerformed(evt);
+            }
+        });
+
+        deporteLbl.setText("Deporte");
+
+        ramaLbl.setText("Rama");
+
+        jefeDeRamaLbl.setText("Jefe de rama");
+
+        comboDeporte.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un deporte", "Judo", "Basquetbol", "Futbol", "Voleibol", "Hockey", "Karate", "Taekwondo" }));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(metodologoLbl)
+                                    .addComponent(jefeDeRamaLbl))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtJefeRama, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                    .addComponent(txtMetodologo, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(25, 25, 25)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(deporteLbl)
+                                    .addComponent(ramaLbl))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtRama)
+                                    .addComponent(comboDeporte, 0, 150, Short.MAX_VALUE)))))
+                    .addComponent(siguienteBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(deporteLbl)
+                    .addComponent(comboDeporte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ramaLbl)
+                    .addComponent(txtRama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtJefeRama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jefeDeRamaLbl))
+                .addGap(13, 13, 13)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(metodologoLbl)
+                    .addComponent(txtMetodologo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(siguienteBtn)
+                .addContainerGap(21, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(73, 73, 73)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(deporteLbl)
-                                .addGap(134, 134, 134))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(deporteCB, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(57, 57, 57)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ramaLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ramaCB, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(46, 46, 46)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jefeDeRamaLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jefeDeRamaCB, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(43, 43, 43)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(entrenadorLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(entrenadorCB, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(89, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(metodologoLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(metodologoCB, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(indicacionesLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(242, 242, 242))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(siguienteBtn)
-                        .addGap(349, 349, 349))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblBienvenida)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblNombreEntrenador)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblBienvenida)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblNombreEntrenador))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(546, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,37 +160,16 @@ public class CrearMCFrame extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblBienvenida)
                     .addComponent(lblNombreEntrenador))
-                .addGap(3, 3, 3)
-                .addComponent(indicacionesLbl)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ramaLbl)
-                    .addComponent(deporteLbl)
-                    .addComponent(jefeDeRamaLbl)
-                    .addComponent(entrenadorLbl))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(deporteCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jefeDeRamaCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ramaCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(entrenadorCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41)
-                .addComponent(metodologoLbl)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(metodologoCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(82, 82, 82)
-                .addComponent(siguienteBtn)
-                .addContainerGap(209, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(243, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -199,97 +181,23 @@ public class CrearMCFrame extends javax.swing.JFrame {
 
     private void siguienteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguienteBtnActionPerformed
         // TODO add your handling code here:
-       
-        if ( validarCampos()) {
-            String deporte= deporteCB.getSelectedItem().toString();
-            String rama = ramaCB.getSelectedItem().toString();
-            String jefeDeRama = jefeDeRamaCB.getSelectedItem().toString();
-            String entrenador = entrenadorCB.getSelectedItem().toString();
-            String metodologo = metodologoCB.getSelectedItem().toString();
+
+        if (validarCampos()) {
             
-            Macrociclo macrociclo = new Macrociclo(deporte, rama, jefeDeRama, entrenador, metodologo);
-
-            new InicioFrame(macrociclo).setVisible(true);
-
-        }else {
-                JOptionPane.showMessageDialog(
-                        null, // Componente padre (en este caso, ninguno)
-                        "Ocurrió un error al ingresar los datos.",
-                        "Error al ingresar los datos",
-                        JOptionPane.INFORMATION_MESSAGE
-                );
-            }
+        } else {
+            JOptionPane.showMessageDialog(
+                    null, // Componente padre (en este caso, ninguno)
+                    "Ocurrió un error al ingresar los datos.",
+                    "Error al ingresar los datos",
+                    JOptionPane.INFORMATION_MESSAGE
+            );
+        }
     }//GEN-LAST:event_siguienteBtnActionPerformed
 
-    private void deporteCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deporteCBActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_deporteCBActionPerformed
-
-    private void deporteCBItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_deporteCBItemStateChanged
-        // TODO add your handling code here:
-        String deporte = deporteCB.getSelectedItem().toString();
-        ramaCB.setEnabled(true);
-        switch (deporte) {
-            case "Judo":
-                ramaCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Judo 1", "Judo 2", "Judo 3"}));
-                break;
-            case "Basquetbol":
-                ramaCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Basquetbol 1", "Basquetbol 2", "Basquetbol 3"}));
-                break;
-
-            case "Futbol":
-                ramaCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Futbol 1", "Futbol 2", "Futbol 3"}));
-                break;
-            case "Voleibol":
-                ramaCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Voleibol 1", "Voleibol 2", "Voleibol 3"}));
-                break;
-            case "Hockey":
-                ramaCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Hockey 1", "Hockey 2", "Hockey 3"}));
-                break;
-
-            case "Karate":
-                ramaCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Karate 1", "Karate 2", "Karate 3"}));
-                break;
-            case "Taekwondo":
-                ramaCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Takwondo 1", "Takwondo 2", "Takwondo 3"}));
-                break;
-            default:
-            // Default secuencia de sentencias.
-        }
-    }//GEN-LAST:event_deporteCBItemStateChanged
-
-    public void init() {
-        ramaCB.setEnabled(false);
-        jefeDeRamaCB.setEnabled(true);
-        entrenadorCB.setEnabled(true);
-        metodologoCB.setEnabled(true);
-        deporteCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Judo", "Basquetbol", "Futbol", "Voleibol", "Hockey", "Karate", "Taekwondo"}));
-    }
-
     public boolean validarCampos() {
-        String deporteSeleccionado = deporteCB.getSelectedItem().toString();
-        String ramaSeleccionada = ramaCB.getSelectedItem().toString();
-        String jefeDeRamaSeleccionado = jefeDeRamaCB.getSelectedItem().toString();
-        String entrenadorSeleccionado = entrenadorCB.getSelectedItem().toString();
-        String metodologoSeleccionado = metodologoCB.getSelectedItem().toString();
-
-        if ("Seleccionar".equals(deporteSeleccionado)
-                || "Seleccionar".equals(ramaSeleccionada)
-                || "Seleccionar".equals(jefeDeRamaSeleccionado)
-                || "Seleccionar".equals(entrenadorSeleccionado)
-                || "Seleccionar".equals(metodologoSeleccionado)) {
-            // Mostrar mensaje de error
-            JOptionPane.showMessageDialog(this, "Por favor, selecciona valores válidos en todos los campos",
-                    "Error de Validación", JOptionPane.ERROR_MESSAGE);
-        } else {
-            return true;
-            // Todos los campos son válidos, puedes continuar con tu lógica
-            // ...
-        }
-        return false;
+        return true;
     }
-/**
+    /**
      * @param args the command line arguments
      */
 //    public static void main(String args[]) {
@@ -306,13 +214,13 @@ public class CrearMCFrame extends javax.swing.JFrame {
 //                }
 //            }
 //        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(InicioFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(semanasFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(InicioFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(semanasFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(InicioFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(semanasFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(InicioFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(semanasFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        }
 //        //</editor-fold>
 //        //</editor-fold>
@@ -325,20 +233,18 @@ public class CrearMCFrame extends javax.swing.JFrame {
 //        });
 //    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> deporteCB;
+    private javax.swing.JComboBox<String> comboDeporte;
     private javax.swing.JLabel deporteLbl;
-    private javax.swing.JComboBox<String> entrenadorCB;
-    private javax.swing.JLabel entrenadorLbl;
-    private javax.swing.JLabel indicacionesLbl;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JComboBox<String> jefeDeRamaCB;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel jefeDeRamaLbl;
     private javax.swing.JLabel lblBienvenida;
     private javax.swing.JLabel lblNombreEntrenador;
-    private javax.swing.JComboBox<String> metodologoCB;
     private javax.swing.JLabel metodologoLbl;
-    private javax.swing.JComboBox<String> ramaCB;
     private javax.swing.JLabel ramaLbl;
     private javax.swing.JButton siguienteBtn;
+    private javax.swing.JTextField txtJefeRama;
+    private javax.swing.JTextField txtMetodologo;
+    private javax.swing.JTextField txtRama;
     // End of variables declaration//GEN-END:variables
 }
