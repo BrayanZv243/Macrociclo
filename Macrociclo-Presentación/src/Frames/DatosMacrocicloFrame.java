@@ -9,10 +9,13 @@ import javax.swing.JOptionPane;
  *
  * @author alanf
  */
-public class CrearMCFrame extends javax.swing.JFrame {
+public class DatosMacrocicloFrame extends javax.swing.JFrame {
 
     Entrenador entrenador;
     int semanas;
+    Macrociclo macro;
+    String inicio;
+    String fin;
 
     /**
      * Creates new form CrearMCFrame
@@ -20,15 +23,18 @@ public class CrearMCFrame extends javax.swing.JFrame {
      * @param entrenador
      * @param semanas
      */
-//    public CrearMCFrame(){
+//    public DatosMacrocicloFrame(){
 //        initComponents();
 //        lblNombreEntrenador.setText("Prueba");
 //        init();
 //        setLocationRelativeTo(null);
 //    }
-    public CrearMCFrame(Entrenador entrenador, int semanas) {
+    public DatosMacrocicloFrame(Entrenador entrenador, String inicio, String fin, int semanas) {
         initComponents();
-        lblNombreEntrenador.setText("Prueba");
+        lblNombreEntrenador.setText(entrenador.getNombre());
+        this.inicio = inicio;
+        this.fin = fin;
+        this.semanas = semanas;
         this.entrenador = entrenador;
         this.semanas = semanas;
         setLocationRelativeTo(null);
@@ -197,7 +203,7 @@ public class CrearMCFrame extends javax.swing.JFrame {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(12, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblBienvenida)
                     .addComponent(lblNombreEntrenador)
@@ -235,18 +241,12 @@ public class CrearMCFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void siguienteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguienteBtnActionPerformed
-        // TODO add your handling code here:
 
-        if (validarCampos()) {
-            
-        } else {
-            JOptionPane.showMessageDialog(
-                    null, // Componente padre (en este caso, ninguno)
-                    "Ocurrió un error al ingresar los datos.",
-                    "Error al ingresar los datos",
-                    JOptionPane.INFORMATION_MESSAGE
-            );
+        if (validarCampos()){
+            dispose();
+            new CrearMacrocicloFrame(macro, inicio, fin).setVisible(true);
         }
+        
     }//GEN-LAST:event_siguienteBtnActionPerformed
 
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
@@ -260,8 +260,54 @@ public class CrearMCFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_txtRamaActionPerformed
 
     public boolean validarCampos() {
+        String deporte = comboDeporte.getSelectedItem().toString();
+        String rama = txtRama.getText();
+        String metodologo = txtMetodologo.getText();
+        String jefeRama = txtJefeRama.getText();
+
+        // Realiza las validaciones
+        if(deporte.equals("Seleccione un deporte")){
+            mostrarMensajeError("Por favor, selecciona un deporte.");
+            return false;
+        }
+        
+        if (esStringVacioONulo(deporte)) {
+            mostrarMensajeError("Por favor, selecciona un deporte.");
+            return false;
+        }
+
+        if (esStringVacioONulo(rama)) {
+            mostrarMensajeError("Por favor, ingresa la rama.");
+            return false;
+        }
+
+        if (esStringVacioONulo(metodologo)) {
+            mostrarMensajeError("Por favor, ingresa el nombre del metodólogo.");
+            return false;
+        }
+
+        if (esStringVacioONulo(jefeRama)) {
+            mostrarMensajeError("Por favor, ingresa el nombre del jefe de rama.");
+            return false;
+        }
+
+        try {
+            macro = new Macrociclo(deporte, rama, jefeRama, jefeRama, metodologo, semanas);
+        } catch (Exception e) {
+            System.out.println("Error " + e);
+        }
+
         return true;
     }
+
+    private boolean esStringVacioONulo(String str) {
+        return str == null || str.trim().isEmpty();
+    }
+
+    private void mostrarMensajeError(String mensaje) {
+        JOptionPane.showMessageDialog(null, mensaje, "Error de Entrada", JOptionPane.ERROR_MESSAGE);
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -293,7 +339,7 @@ public class CrearMCFrame extends javax.swing.JFrame {
 //        /* Create and display the form */
 //        java.awt.EventQueue.invokeLater(new Runnable() {
 //            public void run() {
-//                new CrearMCFrame().setVisible(true);
+//                new DatosMacrocicloFrame().setVisible(true);
 //            }
 //        });
 //    }

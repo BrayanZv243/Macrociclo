@@ -1,7 +1,9 @@
 package Frames;
 
+import autenticacion.IniciarSesionFrame;
 import autenticacion.RegistroFrame;
 import entidades.Entrenador;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -10,15 +12,16 @@ import javax.swing.JOptionPane;
  *
  * @author USER
  */
-public class semanasFrame extends javax.swing.JFrame {
+public class SemanasFrame extends javax.swing.JFrame {
 
     Entrenador entrenador;
 
-    public semanasFrame(Entrenador entrenador) {
+    public SemanasFrame(Entrenador entrenador) {
         initComponents();
         setLocationRelativeTo(null);
         
         this.entrenador = entrenador;
+        lblNombreEntrenador.setText(entrenador.getNombre());
     }
 
     @SuppressWarnings("unchecked")
@@ -28,7 +31,7 @@ public class semanasFrame extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         lblBienvenida = new javax.swing.JLabel();
         lblNombreEntrenador = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        cerrarSesionlbl = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -52,10 +55,11 @@ public class semanasFrame extends javax.swing.JFrame {
         lblNombreEntrenador.setForeground(new java.awt.Color(255, 255, 255));
         lblNombreEntrenador.setText("Hugo Sanchez");
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/volver.png"))); // NOI18N
-        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel4MouseClicked(evt);
+        cerrarSesionlbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/volver.png"))); // NOI18N
+        cerrarSesionlbl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cerrarSesionlbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                cerrarSesionlblMousePressed(evt);
             }
         });
 
@@ -69,7 +73,7 @@ public class semanasFrame extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addComponent(jLabel4)
+                .addComponent(cerrarSesionlbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblNombreEntrenador)
                 .addGap(33, 33, 33))
@@ -85,8 +89,8 @@ public class semanasFrame extends javax.swing.JFrame {
                         .addComponent(lblNombreEntrenador)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                        .addComponent(cerrarSesionlbl)
                         .addContainerGap())))
         );
 
@@ -178,7 +182,7 @@ public class semanasFrame extends javax.swing.JFrame {
                     .addComponent(totalSemanasCalculadas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(46, 46, 46)
                 .addComponent(btnConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -213,12 +217,15 @@ public class semanasFrame extends javax.swing.JFrame {
         if (validaciones()) {
             JOptionPane.showMessageDialog(
                     null, // Componente padre (en este caso, ninguno)
-                    "Se registró el macrociclo de forma exitosa.",
+                    "Se registraron las semanas.",
                     "Registro Exitoso",
                     JOptionPane.INFORMATION_MESSAGE
             );
+            
             dispose();
-            new CrearMCFrame(entrenador, Integer.parseInt(totalSemanasCalculadas.getText())).setVisible(true);
+            new DatosMacrocicloFrame(entrenador, dateToString(dateChooserInicio.getDate()), 
+                    dateToString(dateChooserFin.getDate()), Integer.parseInt(totalSemanasCalculadas.getText()))
+                                        .setVisible(true);
 
         } else {
             JOptionPane.showMessageDialog(
@@ -231,12 +238,26 @@ public class semanasFrame extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
-    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-        // TODO add your handling code here:
-        dispose();
-        new CrearMCFrame(entrenador, Integer.parseInt(totalSemanasCalculadas.getText())).setVisible(true);
-        
-    }//GEN-LAST:event_jLabel4MouseClicked
+    private String dateToString(Date fecha){
+        // Crea un objeto SimpleDateFormat con el formato deseado
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+
+        // Convierte el objeto Date a una cadena en el formato especificado
+        return formatoFecha.format(fecha);
+    }
+    
+    private void cerrarSesionlblMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cerrarSesionlblMousePressed
+        int opcion = JOptionPane.showConfirmDialog(
+                null,
+                "¿Estás seguro de cerrar sesión?",
+                "Confirmar Cierre de Sesión",
+                JOptionPane.YES_NO_OPTION);
+
+        if(opcion == JOptionPane.YES_OPTION){
+            dispose();
+            new IniciarSesionFrame().setVisible(true);
+        }
+    }//GEN-LAST:event_cerrarSesionlblMousePressed
 
     private boolean validaciones() {
         totalSemanasCalculadas.setText("");
@@ -286,13 +307,13 @@ public class semanasFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirmar;
+    private javax.swing.JLabel cerrarSesionlbl;
     private com.toedter.calendar.JDateChooser dateChooserFin;
     private com.toedter.calendar.JDateChooser dateChooserInicio;
     private javax.swing.JLabel indicacionesLbl;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lblBienvenida;
