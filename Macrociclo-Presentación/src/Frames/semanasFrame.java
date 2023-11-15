@@ -56,7 +56,7 @@ public class SemanasFrame extends javax.swing.JFrame {
         lblNombreEntrenador.setText("Hugo Sanchez");
 
         cerrarSesionlbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/volver.png"))); // NOI18N
-        cerrarSesionlbl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cerrarSesionlbl.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         cerrarSesionlbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 cerrarSesionlblMousePressed(evt);
@@ -89,7 +89,7 @@ public class SemanasFrame extends javax.swing.JFrame {
                         .addComponent(lblNombreEntrenador)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(cerrarSesionlbl)
                         .addContainerGap())))
         );
