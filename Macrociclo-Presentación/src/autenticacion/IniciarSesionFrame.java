@@ -1,6 +1,7 @@
 package autenticacion;
 
-import Frames.SemanasFrame;
+
+import Frames.menuPrincipalFrame;
 import entidades.Entrenador;
 import interfaces.IPersistenciaFachada;
 import java.awt.Color;
@@ -188,7 +189,7 @@ public class IniciarSesionFrame extends javax.swing.JFrame {
 
         if (entrenador != null) {
             dispose();
-            new SemanasFrame(entrenador).setVisible(true);
+            new menuPrincipalFrame(entrenador).setVisible(true);
         } else {
             JOptionPane.showMessageDialog(
                     null, // Componente padre (en este caso, ninguno)
