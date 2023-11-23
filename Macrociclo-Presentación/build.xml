@@ -2,18 +2,24 @@
 <project name="Macrociclos-Presentación" default="default" basedir=".">
     <!-- Otras configuraciones del proyecto ... -->
 
+    <path id="test.classpath">
+        <!-- Agrega las rutas necesarias al classpath de las pruebas -->
+        <pathelement location="${build.classes.dir}" />
+        <pathelement location="${build.test.classes.dir}" />
+        <!-- Agrega más rutas según sea necesario -->
+    </path>
+
     <target name="compile-test" depends="compile">
-        <!-- Configuración para compilar las clases de prueba -->
-        <!-- Ajusta según sea necesario -->
+        <javac destdir="${build.test.classes.dir}" srcdir="${src.dir}">
+            <!-- Configuración para compilar las clases de prueba -->
+            <classpath refid="test.classpath" />
+            <include name="**/*Test*.java" />
+        </javac>
     </target>
 
     <target name="run-tests" depends="compile-test">
         <junit printsummary="on" fork="true" haltonfailure="false">
-            <classpath>
-                <!-- Agrega las rutas necesarias al classpath de las pruebas -->
-                <pathelement location="${build.test.classes.dir}" />
-                <!-- Agrega más rutas según sea necesario -->
-            </classpath>
+            <classpath refid="test.classpath" />
             <formatter type="plain" />
             <batchtest fork="yes" todir="${build.test.results.dir}">
                 <fileset dir="${src.dir}">
