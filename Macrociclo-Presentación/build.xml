@@ -2,6 +2,11 @@
 <project name="Macrociclos-Presentación" default="default" basedir=".">
     <!-- Otras configuraciones del proyecto ... -->
 
+    <target name="compile-test" depends="compile">
+        <!-- Configuración para compilar las clases de prueba -->
+        <!-- Ajusta según sea necesario -->
+    </target>
+
     <target name="run-tests" depends="compile-test">
         <junit printsummary="on" fork="true" haltonfailure="false">
             <classpath>
