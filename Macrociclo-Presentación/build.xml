@@ -19,6 +19,11 @@
         </junit>
     </target>
 
+    <!-- Agrega el siguiente bloque para permitir ejecutar 'ant test' -->
+    <target name="test" depends="run-tests">
+        <!-- Agrega cualquier acción adicional necesaria -->
+    </target>
+
     <!-- Otras configuraciones del proyecto ... -->
 
 </project>
