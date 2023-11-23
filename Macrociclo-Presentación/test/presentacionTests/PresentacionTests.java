@@ -37,6 +37,12 @@ public class PresentacionTests {
     @Test
     public void calcularSemanasTest() {
         System.out.println("Calculamos las semanas de un periodo dado correcto.");
+
+        if(true){
+            fail("ERROR PROBANDO XD")
+        }
+
+        
         assertEquals(false,false);
     }
     
