@@ -37,13 +37,13 @@ public class PresentacionTests {
     @Test
     public void calcularSemanasTest() {
         System.out.println("Calculamos las semanas de un periodo dado correcto.");
-        assertEquals(true,true);
+        assertEquals(false,false);
     }
     
     @Test
     public void calcularSemanasConFechasInvalidasTest() {
         System.out.println("Calculamos las semanas de un periodo dado incorrecto.");
-        assertEquals(true, true);
+        assertEquals(false, true);
     }
 
 }
