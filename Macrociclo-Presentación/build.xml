@@ -2,6 +2,11 @@
 <project name="Macrociclos-Presentación" default="default" basedir=".">
     <!-- Otras configuraciones del proyecto ... -->
 
+    <!-- Definición de propiedades -->
+    <property name="src.dir" location="src"/> <!-- Ajusta según sea necesario -->
+    <property name="build.classes.dir" location="build/classes"/> <!-- Ajusta según sea necesario -->
+    <property name="build.test.classes.dir" location="build/test/classes"/> <!-- Ajusta según sea necesario -->
+
     <path id="test.classpath">
         <!-- Agrega las rutas necesarias al classpath de las pruebas -->
         <pathelement location="${build.classes.dir}" />
@@ -9,10 +14,19 @@
         <!-- Agrega más rutas según sea necesario -->
     </path>
 
+    <!-- Target para compilar las clases principales -->
+    <target name="compile">
+        <mkdir dir="${build.classes.dir}"/>
+        <javac destdir="${build.classes.dir}" srcdir="${src.dir}">
+            <!-- Configuración para compilar las clases principales -->
+        </javac>
+    </target>
+
+    <!-- Target para compilar las clases de prueba -->
     <target name="compile-test" depends="compile">
+        <mkdir dir="${build.test.classes.dir}"/>
         <javac destdir="${build.test.classes.dir}" srcdir="${src.dir}">
             <!-- Configuración para compilar las clases de prueba -->
-            <classpath refid="test.classpath" />
             <include name="**/*Test*.java" />
         </javac>
     </target>
@@ -30,7 +44,7 @@
         </junit>
     </target>
 
-    <!-- Agrega el siguiente bloque para permitir ejecutar 'ant test' -->
+    <!-- Target para permitir ejecutar 'ant test' -->
     <target name="test" depends="run-tests">
         <!-- Agrega cualquier acción adicional necesaria -->
     </target>
