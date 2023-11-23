@@ -27,4 +27,4 @@ jobs:
         echo "JAVA_HOME is: $JAVA_HOME"
 
     - name: Run Ant build
-      run: ant -Dplatforms.JDK_17.home=$JAVA_HOME -f Macrociclo-Presentación/build.xml test
+      run: ant -Dplatforms.JDK_17.home=/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.9-9/x64 -f Macrociclo-Presentación/build.xml test
