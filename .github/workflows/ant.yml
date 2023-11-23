@@ -1,6 +1,3 @@
-# This workflow will build a Java project with Ant
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-ant
-
 name: Java CI
 
 on:
@@ -28,4 +25,5 @@ jobs:
         echo "JAVA_HOME is: $JAVA_HOME"
 
     - name: tests presentacion
-      run: ant -Dplatforms.JDK_17.home=/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.2-7/x64 -f Macrociclo-Presentación/build.xml
+      run: ant -Dplatforms.JDK_17.home=/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.9-9/x64 -f Macrociclo-Presentación/build.xml
+        
