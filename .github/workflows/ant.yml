@@ -27,4 +27,4 @@ jobs:
         echo "JAVA_HOME is: $JAVA_HOME"
 
     - name: Run Ant build
-      run: ant -Dplatforms.JDK_17.home=$JAVA_HOME -f Macrociclo-Presentación/build.xml
+      run: ant -Dplatforms.JDK_17.home=$JAVA_HOME -f Macrociclo-Presentación/build.xml test
