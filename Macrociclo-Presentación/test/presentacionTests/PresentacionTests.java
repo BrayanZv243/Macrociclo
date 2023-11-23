@@ -39,7 +39,7 @@ public class PresentacionTests {
         System.out.println("Calculamos las semanas de un periodo dado correcto.");
 
         if(true){
-            fail("ERROR PROBANDO XD")
+            fail("ERROR PROBANDO XD");
         }
 
         
