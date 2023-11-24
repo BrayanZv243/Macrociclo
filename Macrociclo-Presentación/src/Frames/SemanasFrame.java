@@ -23,6 +23,10 @@ public class SemanasFrame extends javax.swing.JFrame {
         this.entrenador = entrenador;
         lblNombreEntrenador.setText(entrenador.getNombre());
     }
+    
+    public SemanasFrame(){
+        
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -292,7 +296,7 @@ public class SemanasFrame extends javax.swing.JFrame {
         return true;
     }
 
-    private int calcularSemanas(Date inicio, Date fin) {
+    public int calcularSemanas(Date inicio, Date fin) {
         // Crear un objeto Calendar para las fechas
         Calendar calInicio = Calendar.getInstance();
         Calendar calFin = Calendar.getInstance();

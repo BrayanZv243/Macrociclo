@@ -1,5 +1,7 @@
 package presentacionTests;
 
+import Frames.SemanasFrame;
+import java.util.Date;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -40,11 +42,9 @@ public class PresentacionTests {
     public void testCalcularSemanasTest() {
         System.out.println("Calculamos las semanas de un periodo dado correcto.");
 
-        if(true){
-            fail("ERROR PROBANDO");
-        }
-
+        SemanasFrame semanasFrame = new SemanasFrame();
         
+        int semanas = semanasFrame.calcularSemanas(new Date(), new Date());
         assertEquals(false,false);
     }
    
