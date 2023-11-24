@@ -33,9 +33,11 @@ public class PresentacionTests {
     public void tearDown() {
     }
 
-   
+    /**
+     * Test para calcular la semanas en un periodo válido
+     */
     @Test
-    public void calcularSemanasTest() {
+    public void testCalcularSemanasTest() {
         System.out.println("Calculamos las semanas de un periodo dado correcto.");
 
         if(true){
@@ -47,7 +49,7 @@ public class PresentacionTests {
     }
     
     @Test
-    public void calcularSemanasConFechasInvalidasTest() {
+    public void testCalcularSemanasConFechasInvalidasTest() {
         System.out.println("Calculamos las semanas de un periodo dado incorrecto.");
         assertEquals(false, true);
     }
