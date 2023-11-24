@@ -25,4 +25,4 @@ jobs:
         echo "JAVA_HOME is: $JAVA_HOME"
 
     - name: Pruebas Unitarias
-      run: ls -R ant -Dplatforms.JDK_17.home=$JAVA_HOME -f Macrociclo-Presentación/build.xml test
+      run: ls -l ant -Dplatforms.JDK_17.home=$JAVA_HOME -f Macrociclo-Presentación/build.xml test
