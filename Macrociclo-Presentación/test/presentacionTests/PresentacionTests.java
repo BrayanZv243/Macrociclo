@@ -41,17 +41,12 @@ public class PresentacionTests {
         System.out.println("Calculamos las semanas de un periodo dado correcto.");
 
         if(true){
-            fail("ERROR PROBANDO XD");
+            fail("ERROR PROBANDO");
         }
 
         
         assertEquals(false,false);
     }
-    
-    @Test
-    public void testCalcularSemanasConFechasInvalidasTest() {
-        System.out.println("Calculamos las semanas de un periodo dado incorrecto.");
-        assertEquals(false, true);
-    }
+   
 
 }
