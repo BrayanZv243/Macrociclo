@@ -1,0 +1,11 @@
+factory\DAOSFactory.class
+interfaces\IPersistencia.class
+interfaces\IEntrenadorDAO.class
+persistencia\Persistencia.class
+interfaces\IMacrocicloDAO.class
+persistencia\MacrocicloDAO.class
+interfaces\IConexionBD.class
+entidades\Macrociclo.class
+persistencia\EntrenadorDAO.class
+persistencia\ConexionBD.class
+entidades\Entrenador.class

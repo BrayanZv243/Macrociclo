@@ -1,0 +1,7 @@
+BOSFactory\BOSFactory.class
+interfaces\IEntrenadorService.class
+interfaces\IMacrocicloService.class
+interfaces\IPersistenciaFachada.class
+negocio\PersistenciaFachada.class
+negocio\MacrocicloService.class
+negocio\EntrenadorService.class
