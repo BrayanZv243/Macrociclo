@@ -46,7 +46,7 @@
         </dependency>
         
         <dependency>
-            <groupId>macrociclo-servicios</groupId>
+            <groupId>isw.itson</groupId>
             <artifactId>Macrociclo-Servicios</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
