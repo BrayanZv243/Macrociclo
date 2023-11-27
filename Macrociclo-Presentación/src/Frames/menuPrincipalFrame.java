@@ -79,6 +79,11 @@ public class menuPrincipalFrame extends javax.swing.JFrame {
         deporteLbl.setText("Macrociclos");
 
         comboMacrociclos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un Macrociclo", "Macrociclo1", "Macrociclo2", "Macrociclo3", "Macrociclo4" }));
+        comboMacrociclos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboMacrociclosActionPerformed(evt);
+            }
+        });
 
         indicacionesLbl.setBackground(new java.awt.Color(51, 51, 51));
         indicacionesLbl.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -222,8 +227,12 @@ public class menuPrincipalFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
     private void btnEliminarMacrocicloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarMacrocicloActionPerformed
-
         
+        int resultado=mostrarMensajeDeConfirmacion("¿Deseas eliminar este macrociclo");
+        if(resultado == JOptionPane.YES_OPTION){
+            dispose();
+            new SemanasFrame(entrenador).setVisible(true); 
+        }
 
     }//GEN-LAST:event_btnEliminarMacrocicloActionPerformed
 
@@ -237,7 +246,23 @@ public class menuPrincipalFrame extends javax.swing.JFrame {
 
     private void btnEditarMacrocicloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarMacrocicloActionPerformed
         // TODO add your handling code here:
+        int resultado=mostrarMensajeDeConfirmacion("¿Deseas seguir editando este macrociclo?");
+        if(resultado == JOptionPane.YES_OPTION){
+            dispose();
+            new SemanasFrame(entrenador).setVisible(true); 
+        }
     }//GEN-LAST:event_btnEditarMacrocicloActionPerformed
+
+    private void comboMacrociclosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboMacrociclosActionPerformed
+        // TODO add your handling code here:
+        if(comboMacrociclos.getSelectedIndex()!= 0){
+            btnEditarMacrociclo.setEnabled(true);
+            btnEliminarMacrociclo.setEnabled(true);
+        }else{
+            btnEditarMacrociclo.setEnabled(false);
+            btnEliminarMacrociclo.setEnabled(false);
+        }
+    }//GEN-LAST:event_comboMacrociclosActionPerformed
 
     public boolean validarCampos() {
         String deporte = comboMacrociclos.getSelectedItem().toString();
@@ -267,6 +292,11 @@ public class menuPrincipalFrame extends javax.swing.JFrame {
 
     private void mostrarMensajeError(String mensaje) {
         JOptionPane.showMessageDialog(null, mensaje, "Error de Entrada", JOptionPane.ERROR_MESSAGE);
+    }
+    
+    private int mostrarMensajeDeConfirmacion(String mensaje) {
+        int result = JOptionPane.showConfirmDialog(null, mensaje, "Confirmation", JOptionPane.YES_NO_OPTION);
+        return result;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
