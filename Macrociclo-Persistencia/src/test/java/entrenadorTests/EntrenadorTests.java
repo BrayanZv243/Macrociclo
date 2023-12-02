@@ -4,6 +4,9 @@ import entidades.Entrenador;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import persistencia.EntrenadorDAO;
@@ -25,7 +28,7 @@ public class EntrenadorTests {
 
     @Test
     public void registrarEntrenadorTest() {
-        System.out.println("Registramos un entrenador");
+        System.out.println("Registramos un entrenador.");
 
         boolean expResult = true;
 
@@ -40,4 +43,75 @@ public class EntrenadorTests {
         // Verificar la aserción utilizando Mockito
         assertEquals(expResult, result);
     }
+
+    @Test
+    public void validarEntrenadorExisteTest() {
+        System.out.println("Obtenemos un entrenador existente.");
+
+        Entrenador e = new Entrenador("228311", "123", "Brayan", "brayan@hotmail.com");
+
+        // Configurar el comportamiento simulado utilizando Mockito
+        when(entrenadorDAO.existeEntrenador(e)).thenReturn(e);
+
+        // Lógica de prueba que utiliza el mock de EntrenadorDAO
+        Entrenador result = entrenadorDAO.existeEntrenador(e);
+
+        // Verificar la aserción utilizando Mockito
+        assertNotNull(result);
+    }
+
+    @Test
+    public void crearEntrenadorNullTest() {
+        System.out.println("Validamos crear un entrenador nulo.");
+        when(entrenadorDAO.registrarEntrenador(null)).thenReturn(false);
+        assertFalse(entrenadorDAO.registrarEntrenador(null));
+    }
+
+    @Test
+    public void obtenerEntrenadorTest() {
+        System.out.println("Validamos el obtener un entrenador.");
+        Entrenador e = new Entrenador("228311", "123", "Brayan", "brayan@hotmail.com");
+
+        when(entrenadorDAO.existeEntrenador(e)).thenReturn(e);
+
+        assertEquals(e, entrenadorDAO.existeEntrenador(e));
+    }
+
+    @Test
+    public void obtenerEntrenadorInexistenteTest() {
+        System.out.println("Validamos que no obtenga un entrenador inexistente.");
+        when(entrenadorDAO.existeEntrenador(null)).thenReturn(null);
+        assertEquals(null, entrenadorDAO.existeEntrenador(new Entrenador("228311", "123", "Brayan", "brayan@hotmail.com")));
+    }
+
+    @Test
+    public void actualizarEntrenadorTest() {
+        System.out.println("Validamos la actualización de un entrenador.");
+        Entrenador nuevoEntrenador = new Entrenador("228311", "123", "Brayan", "brayan@hotmail.com");
+
+        when(entrenadorDAO.actualizarEntrenador("228311", nuevoEntrenador)).thenReturn(true);
+
+        assertTrue(entrenadorDAO.actualizarEntrenador("228311", nuevoEntrenador));
+    }
+
+    @Test
+    public void actualizarEntrenadorNullTest() {
+        System.out.println("Validamos la actualización de un entrenador nulo.");
+
+        when(entrenadorDAO.actualizarEntrenador(null, null)).thenReturn(false);
+
+        assertFalse(entrenadorDAO.actualizarEntrenador(null, null));
+    }
+
+    @Test
+    public void actualizarEntrenadorInexistenteTest() {
+        System.out.println("Validamos la actualización de un entrenador inexistente.");
+        Entrenador nuevoEntrenador = new Entrenador();
+        nuevoEntrenador.setId("000000");
+
+        when(entrenadorDAO.actualizarEntrenador(nuevoEntrenador.getId(), nuevoEntrenador)).thenReturn(false);
+
+        assertFalse(entrenadorDAO.actualizarEntrenador(nuevoEntrenador.getId(), nuevoEntrenador));
+    }
+
 }
