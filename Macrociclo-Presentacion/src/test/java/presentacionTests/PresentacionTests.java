@@ -1,6 +1,5 @@
 package presentacionTests;
 
-import java.util.Calendar;
 import java.util.Date;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -82,7 +81,7 @@ public class PresentacionTests {
     private boolean validacionesSemanas(Date inicio, Date fin) {
 
         try {
-            if (inicio == null && fin == null) {
+            if (inicio == null || fin == null) {
                 return false;
             }
             // Validar que la fecha de inicio sea anterior a la fecha de fin

@@ -28,7 +28,7 @@ public class EntrenadorTests {
 
     @Test
     public void registrarEntrenadorTest() {
-        System.out.println("Registramos un entrenador.");
+        System.out.println("H10_CP1 - Verificar que un usuario pueda registrarse correctamente.");
 
         boolean expResult = true;
 
@@ -45,19 +45,35 @@ public class EntrenadorTests {
     }
 
     @Test
-    public void validarEntrenadorExisteTest() {
-        System.out.println("Obtenemos un entrenador existente.");
+    public void validarCorreoPotrosEntrenador() {
+        System.out.println("H10_CP2 - Probar que el sistema maneje adecuadamente el intento de registro con un correo que no sea de potros");
 
         Entrenador e = new Entrenador("228311", "123", "Brayan", "brayan@hotmail.com");
 
         // Configurar el comportamiento simulado utilizando Mockito
-        when(entrenadorDAO.existeEntrenador(e)).thenReturn(e);
+        when(entrenadorDAO.registrarEntrenador(e)).thenReturn(false);
 
         // Lógica de prueba que utiliza el mock de EntrenadorDAO
-        Entrenador result = entrenadorDAO.existeEntrenador(e);
+        boolean result = entrenadorDAO.registrarEntrenador(e);
 
         // Verificar la aserción utilizando Mockito
-        assertNotNull(result);
+        assertFalse(result);
+    }
+
+    @Test
+    public void validarEntrenadorExistente() {
+        System.out.println("H10_CP3 - Probar que el sistema maneje adecuadamente el intento de registro con un id que ya se esta usuando.");
+
+        Entrenador e = new Entrenador("228899", "Pepito123456", "Ricardo Saavedra", "Ricardo@potros.itson.edu.mx");
+
+        // Configurar el comportamiento simulado utilizando Mockito
+        when(entrenadorDAO.registrarEntrenador(e)).thenReturn(true);
+
+        // Lógica de prueba que utiliza el mock de EntrenadorDAO
+        boolean result = entrenadorDAO.registrarEntrenador(e);
+
+        // Verificar la aserción utilizando Mockito
+        assertTrue(result);
     }
 
     @Test
