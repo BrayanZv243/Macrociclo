@@ -3,18 +3,18 @@ package entidades;
 import java.util.Objects;
 
 public class Macrociclo {
-
+    
+    private Entrenador entrenador;
     private String deporte;
     private String rama;
     private String jefeDeRama;
-    private String entrenador;
     private String metodologo;
     private int semanas;
 
     public Macrociclo() {
     }
 
-    public Macrociclo(String deporte, String rama, String jefeDeRama, String entrenador, String metodologo, int semanas) {
+    public Macrociclo(String deporte, String rama, String jefeDeRama, String metodologo, int semanas, Entrenador entrenador) {
         this.deporte = deporte;
         this.rama = rama;
         this.jefeDeRama = jefeDeRama;
@@ -23,7 +23,7 @@ public class Macrociclo {
         this.semanas = semanas;
     }
 
-    public Macrociclo(String deporte, String rama, String jefeDeRama, String entrenador, String metodologo) {
+    public Macrociclo(String deporte, String rama, String jefeDeRama, String metodologo, Entrenador entrenador) {
         this.deporte = deporte;
         this.rama = rama;
         this.jefeDeRama = jefeDeRama;
@@ -55,11 +55,11 @@ public class Macrociclo {
         this.jefeDeRama = jefeDeRama;
     }
 
-    public String getEntrenador() {
+    public Entrenador getEntrenador() {
         return entrenador;
     }
 
-    public void setEntrenador(String entrenador) {
+    public void setEntrenador(Entrenador entrenador) {
         this.entrenador = entrenador;
     }
 

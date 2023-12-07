@@ -292,7 +292,7 @@ public class DatosMacrocicloFrame extends javax.swing.JFrame {
         }
 
         try {
-            macro = new Macrociclo(deporte, rama, jefeRama, jefeRama, metodologo, semanas);
+            macro = new Macrociclo(deporte, rama, jefeRama, metodologo, semanas, entrenador);
         } catch (Exception e) {
             System.out.println("Error " + e);
         }

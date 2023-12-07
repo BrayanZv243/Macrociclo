@@ -54,7 +54,7 @@
                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="lblBienvenida1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="lblNombreEntrenador1" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblNombreEntrenador" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="btnCerrarSesion1" min="-2" pref="120" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
@@ -68,7 +68,7 @@
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="lblBienvenida1" alignment="1" min="-2" pref="32" max="-2" attributes="0"/>
                       <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                          <Component id="lblNombreEntrenador1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblNombreEntrenador" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnCerrarSesion1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -90,8 +90,11 @@
               <Image iconType="3" name="/volver.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lblBienvenida1MousePressed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblNombreEntrenador1">
+        <Component class="javax.swing.JLabel" name="lblNombreEntrenador">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dialog" size="16" style="1"/>

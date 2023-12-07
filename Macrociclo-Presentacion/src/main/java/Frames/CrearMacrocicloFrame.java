@@ -1,6 +1,7 @@
 package Frames;
 
 import autenticacion.IniciarSesionFrame;
+import entidades.Entrenador;
 import entidades.Macrociclo;
 import java.util.ArrayList;
 import java.util.function.Function;
@@ -40,7 +41,6 @@ public class CrearMacrocicloFrame extends javax.swing.JFrame {
 
     public CrearMacrocicloFrame() {
         initComponents();
-
         setLocationRelativeTo(null);
     }
 
@@ -55,6 +55,7 @@ public class CrearMacrocicloFrame extends javax.swing.JFrame {
         txtInicio.setText(inicio);
         txtFin.setText(fin);
         txtSemanas.setText("" + macro.getSemanas());
+        lblNombreEntrenador.setText("Bienvenido " + macro.getEntrenador().getNombre());
 
     }
 
@@ -64,7 +65,7 @@ public class CrearMacrocicloFrame extends javax.swing.JFrame {
 
         jPanel4 = new javax.swing.JPanel();
         lblBienvenida1 = new javax.swing.JLabel();
-        lblNombreEntrenador1 = new javax.swing.JLabel();
+        lblNombreEntrenador = new javax.swing.JLabel();
         btnCerrarSesion1 = new javax.swing.JButton();
         jpMacrociclo = new javax.swing.JPanel();
         btnValidarSemanas = new javax.swing.JButton();
@@ -154,10 +155,15 @@ public class CrearMacrocicloFrame extends javax.swing.JFrame {
         lblBienvenida1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         lblBienvenida1.setForeground(new java.awt.Color(255, 255, 255));
         lblBienvenida1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/volver.png"))); // NOI18N
+        lblBienvenida1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                lblBienvenida1MousePressed(evt);
+            }
+        });
 
-        lblNombreEntrenador1.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        lblNombreEntrenador1.setForeground(new java.awt.Color(255, 255, 255));
-        lblNombreEntrenador1.setText("Hugo Sanchez");
+        lblNombreEntrenador.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        lblNombreEntrenador.setForeground(new java.awt.Color(255, 255, 255));
+        lblNombreEntrenador.setText("Hugo Sanchez");
 
         btnCerrarSesion1.setBackground(new java.awt.Color(255, 255, 255));
         btnCerrarSesion1.setForeground(new java.awt.Color(51, 51, 51));
@@ -176,7 +182,7 @@ public class CrearMacrocicloFrame extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addComponent(lblBienvenida1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblNombreEntrenador1)
+                .addComponent(lblNombreEntrenador)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnCerrarSesion1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36))
@@ -188,7 +194,7 @@ public class CrearMacrocicloFrame extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblBienvenida1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblNombreEntrenador1)
+                        .addComponent(lblNombreEntrenador)
                         .addComponent(btnCerrarSesion1)))
                 .addGap(10, 10, 10))
         );
@@ -969,6 +975,7 @@ public class CrearMacrocicloFrame extends javax.swing.JFrame {
                 btnEditarEtapa.setEnabled(false);
 
                 JOptionPane.showMessageDialog(this, "Validaciones exitosas.");
+                calcularPorcentajesEtapas();
             }
 
         } catch (NumberFormatException ex) {
@@ -976,6 +983,10 @@ public class CrearMacrocicloFrame extends javax.swing.JFrame {
             resetearCamposPeriodos();
         }
     }//GEN-LAST:event_btnValidarSemanasActionPerformed
+
+    private void calcularPorcentajesEtapas() {
+
+    }
 
     private void btnEditarEtapaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarEtapaActionPerformed
 
@@ -993,9 +1004,17 @@ public class CrearMacrocicloFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditarEtapaActionPerformed
 
     private void btnCerrarSesion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesion1ActionPerformed
-        // TODO add your handling code here:
-        dispose();
-        new IniciarSesionFrame().setVisible(true);
+
+        int response = JOptionPane.showConfirmDialog(
+                null,
+                "¿Estás seguro de cerrar sesión?",
+                "Cerrar Sesión",
+                JOptionPane.YES_NO_OPTION);
+
+        if (response == JOptionPane.YES_OPTION) {
+            dispose();
+            new IniciarSesionFrame().setVisible(true);
+        }
     }//GEN-LAST:event_btnCerrarSesion1ActionPerformed
 
     private void txtInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtInicioActionPerformed
@@ -1049,6 +1068,19 @@ public class CrearMacrocicloFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnGuardarMacrocicloActionPerformed
 
+    private void lblBienvenida1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBienvenida1MousePressed
+        int response = JOptionPane.showConfirmDialog(
+                null,
+                "¿Estás seguro de regresar?",
+                "Regresar",
+                JOptionPane.YES_NO_OPTION);
+
+        if (response == JOptionPane.YES_OPTION) {
+            dispose();
+            new DatosMacrocicloFrame(macro.getEntrenador(), inicio, fin, macro.getSemanas()).setVisible(true);
+        }
+    }//GEN-LAST:event_lblBienvenida1MousePressed
+
     public boolean validarPeriodos() {
 
         int etapaPrep = Integer.parseInt(txtSemanasPrep.getText());
@@ -1080,8 +1112,6 @@ public class CrearMacrocicloFrame extends javax.swing.JFrame {
     }
 
     public void resetearCamposPeriodos() {
-        txtSemanasPrep.setText("");
-        txtSemanasComp.setText("");
         txtSemanasEtapaPrep.setText("");
         txtSemanasEtapaEsp.setText("");
         txtSemanasPeriodoComp.setText("");
@@ -1157,6 +1187,18 @@ public class CrearMacrocicloFrame extends javax.swing.JFrame {
             return false;
         }
         desactivarCamposEdicion();
+
+        float porcentajeEtapaPrep = (etapaPrep * 100) / prep;
+        float porcentajeEtapaEsp = (etapaEsp * 100) / prep;
+
+        float porcentajeEtapaPreComp = (etapaPreComp * 100) / comp;
+        float porcentajeEtapaComp = (etapaComp * 100) / comp;
+
+        txtPorcentajeEtapaPrep.setText(String.valueOf(Math.round(porcentajeEtapaPrep)));
+        txtPorcentajeEtapaEsp.setText(String.valueOf(Math.round(porcentajeEtapaEsp)));
+
+        txtPorcentajePeriodoPreComp.setText(String.valueOf(Math.round(porcentajeEtapaPreComp)));
+        txtPorcentajeEtapaComp.setText(String.valueOf(Math.round(porcentajeEtapaComp)));
 
         return true;
     }
@@ -1535,7 +1577,7 @@ public class CrearMacrocicloFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JPanel jpMacrociclo;
     private javax.swing.JLabel lblBienvenida1;
-    private javax.swing.JLabel lblNombreEntrenador1;
+    private javax.swing.JLabel lblNombreEntrenador;
     private javax.swing.JPanel pnlGeneral;
     private javax.swing.JPanel pnlOutPeriodoComp;
     private javax.swing.JPanel pnlOutPeriodoPrep;
