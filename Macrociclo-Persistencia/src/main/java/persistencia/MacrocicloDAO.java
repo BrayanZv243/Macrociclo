@@ -28,7 +28,7 @@ public class MacrocicloDAO implements IMacrocicloDAO {
 
         try {
             // Consulta SQL para insertar un nuevo entrenador
-            String insertQuery = "INSERT INTO macrociclos (deporte, rama, jefederama, entrenador, metodologo, semanas) VALUES (?, ?, ?, ?, ?, ?)";
+            String insertQuery = "INSERT INTO macrociclos (deporte, rama, jefederama, metodologo, semanas) VALUES (?, ?, ?, ?, ?, ?)";
 
             // Crear una declaración preparada con la consulta SQL
             preparedStatement = baseDatos.prepareStatement(insertQuery);
@@ -37,7 +37,6 @@ public class MacrocicloDAO implements IMacrocicloDAO {
             preparedStatement.setString(1, macrociclo.getDeporte());
             preparedStatement.setString(2, macrociclo.getRama());
             preparedStatement.setString(3, macrociclo.getJefeDeRama());
-            preparedStatement.setString(4, macrociclo.getEntrenador());
             preparedStatement.setString(5, macrociclo.getMetodologo());
             preparedStatement.setInt(6, macrociclo.getSemanas());
 
